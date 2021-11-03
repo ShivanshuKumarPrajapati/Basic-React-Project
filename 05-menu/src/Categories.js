@@ -2,19 +2,7 @@ import React from 'react';
 
 const Categories = ({ items, category }) => {
 
-  let filterItem;
- function filterCatgry(category)
-  {
-   filterItem =  items.filter((item) => {
-      return (
-        item.category === category
-      );
-    })
-  }
-  console.log(filterItem);
-  if (category === "all")
-  {
-    
+  if (category === "all") {
     return (
       <div className="section-center ">
         {
@@ -23,18 +11,43 @@ const Categories = ({ items, category }) => {
               <article key={item} className="menu-item">
                 <img src={item.img} alt={item.title} className="photo" />
                 <div className="item-info">
-                <header>
-                  <h4>{item.title}</h4>
-                  <span className="price">${item.price}</span>
-                </header>
-                <p className="item-text">{item.desc}</p>
+                  <header>
+                    <h4>{item.title}</h4>
+                    <span className="price">${item.price}</span>
+                  </header>
+                  <p className="item-text">{item.desc}</p>
                 </div>
               </article>
             );
           })
         }
-    </div>
-  )
+      </div>
+    )
+  }
+  else {
+    const filterItem = items.filter((item) => {
+      return (
+        item.category === category
+      )
+    });
+    return (
+      <div className="section-center ">
+        {filterItem.map((item) => {
+          return (
+            <article key={item} className="menu-item">
+              <img src={item.img}  className="photo" />
+              <div className="item-info">
+                <header>
+                  <h4>{item.title}</h4>
+                  <span className="price">${item.price}</span>
+                </header>
+                <p className="item-text">{item.desc}</p>
+              </div>
+            </article>
+          );
+        })}
+      </div>
+    );
   }
 };
 
