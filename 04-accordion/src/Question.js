@@ -1,7 +1,19 @@
 import React, { useState } from 'react';
 import { AiOutlineMinus, AiOutlinePlus } from 'react-icons/ai';
-const Question = () => {
-  return <h2>question component</h2>;
+const Question = (props, handleClick) => {
+  
+  const [toggle,setToggle]=useState(false)
+  return (
+    <div className="question">
+      <header>
+        <h4>{props.title} </h4>
+        <button onClick={() => setToggle(!toggle)} className="btn">
+          {toggle ? <AiOutlineMinus /> : <AiOutlinePlus />}
+        </button>
+      </header>
+      <p>{toggle ? props.info : ""}</p>
+    </div>
+  );
 };
 
 export default Question;

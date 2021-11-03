@@ -12,6 +12,7 @@ const Review = forwardRef((props,ref) => {
   let [review, setReview] = useState(people[0]);
   let [curr, setCurr] = useState(1);
   
+   
   useImperativeHandle(ref, () => ({
   
     handleSurprise()
@@ -27,7 +28,7 @@ const Review = forwardRef((props,ref) => {
     {
       let value = (curr - 1) % 4 ;
       if (value === 0)
-        value = 4;
+        value = people.length;
       setCurr(value);
       const person = people.find((person) => person.id == curr);
       setReview(person);
@@ -47,14 +48,10 @@ const Review = forwardRef((props,ref) => {
     <div className="review section">
       <div className="img-container" key={review.id}>
         <img src={review.image} alt={review.name} className="person-img " />
-        <FaQuoteRight
-          style={{
-            position: "relative",
-            left: "-69px",
-            top: "-124px",
-            color: "black",
-          }}
-        />
+        <span className="quote-icon">
+
+        <FaQuoteRight/>
+        </span>
       </div>
       <h4 className="author">{review.name}</h4>
       <p className="job">{review.job}</p>
