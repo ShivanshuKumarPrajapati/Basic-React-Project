@@ -1,7 +1,7 @@
 import React from 'react';
 
 const Menu = ({ handleClick }) => {
-  
+  //here dynamic approach is possible by taking array of category and displaying list of btn by itr over it.
   return (
     <div>
       <ul className="btn-container">
