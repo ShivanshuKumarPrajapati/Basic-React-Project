@@ -18,18 +18,19 @@ function App() {
       setId(id + 1);
   }
   const handleAuto = () => {
-    setInterval(() => {
+    return (setInterval(() => {
       setId((id) => {
         if (id == people.length)
           return 1;
         else
           return id + 1;
     })
-    }, 5000)
+    }, 5000))
   }
   useEffect(() => {
-    handleAuto();
-  }, [])
+    let slider = handleAuto();
+    return () => clearInterval(slider);
+  }, [id])
   return (
     <div className="section">
       <div className="title">
@@ -38,17 +39,22 @@ function App() {
       </div>
       <div className="section-center">
         {people
-          .filter((person) => person.id == id)
-          .map((filterItem) => {
+          .map((person) => {
+            let position = 'nextSlide';
+            if (person.id === id)
+              position = 'activeSlide';
+            if (
+              person.id === id - 1 ||  (id === 1 && person.id == people.length ))
+              position = "lastSlide"; 
             return (
-              <article key={filterItem.id} >
+              <article className={position} key={person.id} >
                 <img
-                  src={filterItem.image}
+                  src={person.image}
                   className="person-img"
                 />
-                <h4>{filterItem.name}</h4>
-                <p className="title">{filterItem.title}</p>
-                <p className="text">{filterItem.quote}</p>
+                <h4>{person.name}</h4>
+                <p className="title">{person.title}</p>
+                <p className="text">{person.quote}</p>
                 <FaQuoteRight className="icon"></FaQuoteRight>
               </article>
             );
