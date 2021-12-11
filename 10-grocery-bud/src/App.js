@@ -9,11 +9,12 @@ function App() {
   const [alertMssg, setAlertMssg] = useState('');
   const [alertClass, setAlertClass] = useState('');
   const [alert, setAlert] = useState(false);
+  const [list, setList] = useState([]);
+  // const [submitAlert, setSubmitAlert] = useState(false);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const getItem = item;
-    if (getItem === '')
+    if (item === '')
     {
       setAlert(true);
       setAlertClass('alert-danger');
@@ -21,8 +22,10 @@ function App() {
       }
     else
     {
-      console.log(getItem);
+      const newItem = { id: new Date().getTime().toString(), title: item };
+      setList([...list, newItem]);
       setAlert(true);
+
       setAlertMssg("Item Added To The List");
       setAlertClass("alert-success");
       }
@@ -36,6 +39,7 @@ function App() {
     }, 3000);
     return () => clearTimeout(timeout);
   }, [alert]);
+
   return (
     <div className="section-center">
       {alert ? <Alert class={alertClass} value={alertMssg} />:''}
@@ -54,6 +58,7 @@ function App() {
           </button>
         </div>
       </form>
+      {list.length ? <List items={list}></List> : ''}
     </div>
   );
 }
