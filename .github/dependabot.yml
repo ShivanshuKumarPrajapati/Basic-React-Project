@@ -6,10 +6,19 @@
 version: 2
 updates:
     package-ecosystem: "npm" # See documentation for possible values
-    directory:  ["/01-birthday reminder","/02-tours","/03-reviews","/04-accordion","/05-menu","/06-tabs","/07-slider","/08-lorem ipsum generator","/09- color generator","/10-grocery-bud"]
+    directory:  
+        - "/01-birthday reminder"
+        - "/02-tours"
+        - "/03-reviews"
+        - "/04-accordion"
+        - "/05-menu"
+        - "/06-tabs"
+        - "/07-slider"
+        - "/08-lorem ipsum generator"
+        - "/09- color generator"
+        - "/10-grocery-bud"
     schedule:
       interval: "daily"
-      
    
       
    
